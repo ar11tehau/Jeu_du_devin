@@ -6,19 +6,17 @@ def joueur_devine():
     La machine choisit un nombre et le fait deviner à l'utilisateur.
     '''
 
-    #Déterminer un nombre compris entre 1 et 999            
+    # Déterminer un nombre compris entre 1 et 999            
     nombre = random.randint(1, 999)
     print("J'ai choisi un nombre compris entre 1 et 999.")
 
-    #Faire deviner ce nombre
+    # Faire deviner ce nombre
     found = False
     nb_essai = 0
-
     while not found:
-        #Faire deviner une fois ce nombre
+        # Faire deviner une fois ce nombre
         #   Demander une proposition à l'utilisateur
         nb_essai += 1
-        
         proposition = input('Proposition {} : '.format(nb_essai))
         while not proposition.isdigit():
             proposition = input('Proposition {} : '.format(nb_essai))
@@ -33,7 +31,7 @@ def joueur_devine():
             found = True
             print('Trouvé !')
     
-    #Annoncer le résultat
+    # Annoncer le résultat
     print('Bravo ! Vous avez trouvé le nombre en {} essai(s)'.format(nb_essai))
     print()
 
@@ -44,7 +42,7 @@ def machine_devine():
     L'utilisateur choisit un nombre et la machine doit le trouver. Pour chaque nombre proposé par la machine, l'utilisateur indique s'il est trop petit ('p' ou 'P'), trop grand ('g' ou 'G') ou trouvé ('t', 'T')
     '''
 
-    #Demander à l'utilisateur de choisir un nombre compris entre 1 et 999         
+    # Demander à l'utilisateur de choisir un nombre compris entre 1 et 999         
     ready = False
     while not ready:
         pret = input('Avez-vous choisi un nombre compris entre 1 et 999 (o/n) ? ').lower()
@@ -53,7 +51,7 @@ def machine_devine():
         else:
             ready = True
         
-    #Trouver le nombre de l’utilisateur
+    # Trouver le nombre de l’utilisateur
     nb_essai = 0
     found = False
 
@@ -62,7 +60,7 @@ def machine_devine():
 
     while not found:
         #   Calculer un choix machine
-        choix = int((debut + fin) / 2)
+        choix = int((debut + fin) // 2)
         nb_essai += 1
 
         #   Afficher le choix machine
@@ -70,7 +68,7 @@ def machine_devine():
 
         #   Demander à l'utilisateur d'évaluer le choix
         eval = input("Trop (g)rand, trop (p)etit ou (t)rouvé ? ").lower()
-        while eval not in ['g', 'p', 't']:
+        while eval not in ('g', 'p', 't'):
             print("Je n'ai pas compris la réponse. Merci de répondre")
             print("g si ma proposition est trop grande")
             print("p si ma proposition est trop petite")
@@ -85,7 +83,7 @@ def machine_devine():
         else:
             found = True
 
-    #Annoncer le résultat
+    # Annoncer le résultat
     print("J'ai trouvé en {} essai(s)".format(nb_essai))
     print()
 
@@ -98,33 +96,27 @@ def choisir_jeu():
     0- Quitter le programme
     '''
 
-    play = True
-    
+    play = True 
     while play:
-        #Afficher menu
+        # Afficher menu
         print("1- L'ordinateur choisit un nombre et vous le devinez")
         print("2- Vous choisissez un nombre et l'ordinateur le devine")
         print("0- Quitter le programme")
         
-        #Demander le choix utilisateur
+        # Demander le choix utilisateur
         choix = input('''Votre choix : ''')
-        while choix not in ['0', '1', '2']:
-            print("1- L'ordinateur choisit un nombre et vous le devinez")
-            print("2- Vous choisissez un nombre et l'ordinateur le devine")
-            print("0- Quitter le programme")
-            choix = input('''Votre choix : ''')
         print()
         
-        #Lancer le jeu choisi
+        # Lancer le jeu choisi
         if choix == '1':
             joueur_devine()
         elif choix == '2':
             machine_devine()
         else:
-            print("Au revoir...")
             play = False
-        
     
+    print("Au revoir...")
+
 
 if __name__ == '__main__':
     choisir_jeu()
